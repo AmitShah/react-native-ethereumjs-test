@@ -1,13 +1,39 @@
 import React from 'react';
 import './global';
 const ethereumjsutil = require('ethereumjs-util');
+import RNSecureKeyStore from 'react-native-secure-key-store';
+
 
 
 import { StyleSheet, Text, View } from 'react-native';
 
 export default class App extends React.Component {
   componentWillMount() {
-    var hash = ethereumjsutil.sha3("hellow world");
+
+    // For storing key
+RNSecureKeyStore.set("key1", "value1")
+  .then((res) => {
+    console.log(res);
+  }, (err) => {
+    console.log(err);
+  });
+
+// For retrieving key
+RNSecureKeyStore.get("key1")
+  .then((res) => {
+    console.log(res);
+  }, (err) => {
+    console.log(err);
+  });
+
+// For removing key
+RNSecureKeyStore.remove("key1")
+  .then((res) => {
+    console.log(res);
+  }, (err) => {
+    console.log(err);
+  });   
+    var hash = ethereumjsutil.sha3("hello world");
     console.log(hash.toString('hex'));
   }
 
